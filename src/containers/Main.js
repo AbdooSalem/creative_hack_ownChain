@@ -1,4 +1,5 @@
 import {Button, Timeline} from 'antd';
+import { Row, Col } from 'antd';
 import {Component} from "react";
 import React from "react";
 import "./Main.css";
@@ -91,23 +92,31 @@ class Main extends Component {
 
     render() {
         return (
-            <div id="main">
-                {/*<Button type="dashed">Create token</Button>*/}
-                <Timeline>
-                    {
-                        this.state.data.map((obj)=>{
-                            return (
-                                <Timeline.Item>
-                                    <p><span class="bold">created</span> <span >{obj.created}</span></p>
-                                    <p><span class="bold">from</span> <span class="names">{obj.fromName}</span> <span class="hash">{obj.from}</span></p>
-                                    <p><span class="bold">to</span> <span class="names">{obj.toName}</span> <span class="hash">{obj.to}</span></p>
-                                    <p><span class="bold">hash</span> <span >{obj.hash}</span></p>
-                                </Timeline.Item>
-                            )
-                        })
-                    }
-                </Timeline>
-
+            <div className="main">
+                <div>
+                    <Row>
+                        <Col span={16}>
+                            <p className="title">HERMÈS VINTAGE 'Kelly' Handtasche</p>
+                            <Timeline>
+                                {
+                                    this.state.data.map((obj)=>{
+                                        return (
+                                            <Timeline.Item>
+                                                <p><span class="bold">created</span> <span >{obj.created}</span></p>
+                                                <p><span class="bold">from</span> <span class="names">{obj.fromName}</span> <span class="hash">{obj.from}</span></p>
+                                                <p><span class="bold">to</span> <span class="names">{obj.toName}</span> <span class="hash">{obj.to}</span></p>
+                                                <p><span class="bold">hash</span> <span >{obj.hash}</span></p>
+                                            </Timeline.Item>
+                                        )
+                                    })
+                                }
+                            </Timeline>
+                        </Col>
+                        <Col span={8}>
+                            <img src={require('../assets/bag.jpg')} width="200px" />
+                        </Col>
+                    </Row>
+                </div>
             </div>
         );
     }

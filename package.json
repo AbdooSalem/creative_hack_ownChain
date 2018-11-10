@@ -5,12 +5,11 @@
   "dependencies": {
     "antd": "^3.10.5",
     "axios": "^0.18.0",
-    "ethjs": "^0.4.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
     "react-web3": "^1.1.2",
-    "web3": "^1.0.0-beta.34"
+    "react-web3-provider": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",

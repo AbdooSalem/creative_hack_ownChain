@@ -2,13 +2,8 @@ import {Button, Timeline} from 'antd';
 import {Component} from "react";
 import React from "react";
 import "./Main.css";
-
-
+import { withWeb3 } from 'react-web3-provider';
 const axios = require('axios');
-// const Web3 = require('web3');
-// const web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/6ef2e161b20f493d9f2daf77efbbd8ed"));
-// const keystore = `{"version":3,"id":"94b707d3-4ae9-4f9e-8657-c469973f789b","address":"b9f31c423473a1ba4ba1d326a439902a4f8b02f7","Crypto":{"ciphertext":"f429c19570226dd84bd152a80c75afc4a48f1c26ffd890ded0b7cddc4ff3d485","cipherparams":{"iv":"a7c118956ac8a5a96f46b86eab05fddc"},"cipher":"aes-128-ctr","kdf":"scrypt","kdfparams":{"dklen":32,"salt":"17e89efc8eef5d20e5076cae9d58499c1668b9f6a02f5feed8578a823f7a92f8","n":8192,"r":8,"p":1},"mac":"15b76741d4abb1981b39309ac50a73ebf9652ad496da1f300a16c4f88e204f87"}}`;
-// const decryptedAccount = web3.eth.accounts.decrypt(keystore, 'PASSWORD');
 
 class Main extends Component {
     constructor(props) {
@@ -90,8 +85,17 @@ class Main extends Component {
     }
 
     render() {
+
+        const { web3 } = this.props;
+
+        web3.eth.getAccounts(console.log);
+
         return (
             <div id="main">
+
+                /* look at this: https://www.npmjs.com/package/react-web3-provider */
+
+                Web3 version: {web3.version}
                 {/*<Button type="dashed">Create token</Button>*/}
                 <Timeline>
                     {
@@ -114,5 +118,4 @@ class Main extends Component {
 
 }
 
-
-export default Main;
+export default withWeb3(Main);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
-import { Web3Provider } from 'react-web3';
 import './App.css';
 import Main from "./containers/Main";
 

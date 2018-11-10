@@ -1,0 +1,16 @@
+#main {
+    padding-top: 50px;
+    font-size: 1.4em;
+}
+.bold {
+    font-weight: bold;
+    color: #707b90;
+}
+
+.names {
+    color: #282c34;
+}
+.hash {
+    color: gray;
+    font-style: italic;
+}

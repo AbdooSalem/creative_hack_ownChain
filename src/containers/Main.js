@@ -4,9 +4,8 @@ import {Component} from "react";
 import React from "react";
 import "./Main.css";
 import waterfall from 'async-waterfall';
+import { Tag } from 'antd';
 import { withWeb3 } from 'react-web3-provider';
-import Web3Provider from "react-web3-provider";
-const Tx = require('ethereumjs-tx');
 
 const axios = require('axios');
 
@@ -27,7 +26,7 @@ class Main extends Component {
         let i = 0;
         let content = "";
 
-        axios.get('https://ropsten.etherscan.io/token/generic-tokentxns2?contractAddress=0x871d8379127c367e79f7893cb51e9695733957fd&a=1')
+        axios.get('https://ropsten.etherscan.io/token/generic-tokentxns2?contractAddress=0x39260c3ab5fe473461e01868fffc51d51f98cd5c&a=2')
             .then(function(res) {
                 content = res.data;
                 return res.data;
@@ -80,11 +79,15 @@ class Main extends Component {
 
     mapToName = (hash) => {
         if(hash === "0xc7c2f5a4b74b5ac64af2d1987f724f0fe67dd460")
-            return "Isa";
+            return "Gucci Store Milano";
         else if (hash === "0xb9f31c423473a1ba4ba1d326a439902a4f8b02f7")
-            return "Fabian";
+            return "Isa Usmanov";
         else if (hash === "0x0000000000000000000000000000000000000000")
-            return "Apple Munich";
+            return "Gucci Manufacturer in Japan";
+        else if (hash === "0x1f31fc451e98de8fe12a7969dad9d9f801165e3c")
+            return "Fabian";
+        else if (hash === "0x46B3D71512E11385f0f8C8e65b73eFff5615a003")
+            return "Abdoo Said";
         else
             return hash
     }
@@ -773,16 +776,20 @@ class Main extends Component {
                 <div>
                     <Row>
                         <Col span={16}>
-                            <p className="title">HERMÈS VINTAGE 'Kelly' Handtasche</p>
+                            <p className="title">GUCCI Handbag</p>
                             <Timeline>
                                 {
                                     this.state.data.map((obj)=>{
                                         return (
                                             <Timeline.Item>
-                                                <p><span class="bold">created</span> <span >{obj.created}</span></p>
-                                                <p><span class="bold">from</span> <span class="names">{obj.fromName}</span> <span class="hash">{obj.from}</span></p>
-                                                <p><span class="bold">to</span> <span class="names">{obj.toName}</span> <span class="hash">{obj.to}</span></p>
-                                                <p><span class="bold">hash</span> <span >{obj.hash}</span></p>
+                                                <p>
+                                                    <Tag color="#108ee9">Created</Tag>
+                                                    <span >{obj.created}</span></p>
+                                                <p>
+                                                    <Tag color="magenta">From</Tag>
+                                                    <span class="names">{obj.fromName}</span> <span class="hash">{obj.from}</span></p>
+                                                <p> <Tag color="cyan">To</Tag> <span class="names">{obj.toName}</span> <span class="hash">{obj.to}</span></p>
+                                                <p><Tag color="volcano">Trans. hash</Tag> <span >{obj.hash}</span></p>
                                             </Timeline.Item>
                                         )
                                     })
@@ -794,8 +801,8 @@ class Main extends Component {
                         </Col>
                     </Row>
                 </div>
-                <button onClick={() => this.sendEther(0.01, '0xb9f31c423473a1ba4ba1d326a439902a4f8b02f7')}>SEND ETHER</button>
-                <button onClick={() => this.sendToken()}>SEND TOKEN</button>
+                {/*<button onClick={() => this.sendEther(0.01, '0xb9f31c423473a1ba4ba1d326a439902a4f8b02f7')}>SEND ETHER</button>*/}
+                {/*<button onClick={() => this.sendToken()}>SEND TOKEN</button>*/}
             </div>
         );
     }

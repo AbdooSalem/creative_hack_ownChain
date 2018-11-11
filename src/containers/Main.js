@@ -1,11 +1,12 @@
 import {Timeline} from 'antd';
-import { Row, Col } from 'antd';
+import {Row, Col} from 'antd';
 import {Component} from "react";
 import React from "react";
 import "./Main.css";
 import waterfall from 'async-waterfall';
-import { withWeb3 } from 'react-web3-provider';
+import {withWeb3} from 'react-web3-provider';
 import Web3Provider from "react-web3-provider";
+
 const Tx = require('ethereumjs-tx');
 
 const axios = require('axios');
@@ -28,37 +29,37 @@ class Main extends Component {
         let content = "";
 
         axios.get('https://ropsten.etherscan.io/token/generic-tokentxns2?contractAddress=0x871d8379127c367e79f7893cb51e9695733957fd&a=1')
-            .then(function(res) {
+            .then(function (res) {
                 content = res.data;
                 return res.data;
             })
-            .then(function(res) {
+            .then(function (res) {
                 while (content.indexOf("_parent") !== -1) {
-                    content = content.substr(content.indexOf("_parent")+9, content.length);
+                    content = content.substr(content.indexOf("_parent") + 9, content.length);
                     v = content.substr(0, content.indexOf("<"));
                     console.log(v);
 
                     let obj = {hash: v};
 
-                    content = content.substr(content.indexOf("t' title='")+10, content.length);
+                    content = content.substr(content.indexOf("t' title='") + 10, content.length);
                     v = content.substr(0, content.indexOf("'"));
                     console.log(v);
 
                     obj = {...obj, created: v};
 
-                    content = content.substr(content.indexOf("_parent")+9, content.length);
+                    content = content.substr(content.indexOf("_parent") + 9, content.length);
                     v = content.substr(0, content.indexOf("<"));
                     console.log(v);
 
                     obj = {...obj, from: v, fromName: mapToName(v)};
 
-                    content = content.substr(content.indexOf("_parent")+9, content.length);
+                    content = content.substr(content.indexOf("_parent") + 9, content.length);
                     v = content.substr(0, content.indexOf("<"));
                     console.log(v);
 
                     obj = {...obj, to: v, toName: mapToName(v)};
 
-                    content = content.substr(content.indexOf("_parent")+9, content.length);
+                    content = content.substr(content.indexOf("_parent") + 9, content.length);
                     v = content.substr(0, content.indexOf("<"));
                     console.log(v);
 
@@ -72,14 +73,14 @@ class Main extends Component {
 
                 console.log(vars);
                 setState({data: [...vars]});
-            }).catch(function(error) {
-                console.log(error.message);
-            });
+            }).catch(function (error) {
+            console.log(error.message);
+        });
     }
 
 
     mapToName = (hash) => {
-        if(hash === "0xc7c2f5a4b74b5ac64af2d1987f724f0fe67dd460")
+        if (hash === "0xc7c2f5a4b74b5ac64af2d1987f724f0fe67dd460")
             return "Isa";
         else if (hash === "0xb9f31c423473a1ba4ba1d326a439902a4f8b02f7")
             return "Fabian";
@@ -95,10 +96,10 @@ class Main extends Component {
         var Tx = require('ethereumjs-tx');
 
         // Who holds the token now?
-        var myAddress = "0xc7c2f5A4B74b5AC64aF2d1987f724f0fE67dd460";
+        var myAddress = "0xb9F31c423473A1bA4BA1D326A439902a4F8b02f7";
 
         // Who are we trying to send this token to?
-        var destAddress = "0xb9F31c423473A1bA4BA1D326A439902a4F8b02f7";
+        var destAddress = "0x1F31Fc451E98de8Fe12A7969DAd9D9F801165E3c";
 
         // Determine the nonce
         var count = await web3.eth.getTransactionCount(myAddress);
@@ -722,12 +723,12 @@ class Main extends Component {
             "gasLimit": "0x250CA",
             "to": contractAddress,
             "value": "0x0",
-            "data": contract.methods.safeTransferFrom(myAddress, destAddress, "0x02").encodeABI(),
-            "chainId": "0x01"
+            "data": contract.methods.safeTransferFrom(myAddress, destAddress, "0x01").encodeABI(),
+            "chainId": "0x03"
         };
 
         // The private key must be for myAddress
-        var privKey = new Buffer("e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109", 'hex');
+        var privKey = new Buffer("dda945b064c032285927995d653ec0190014affd83fac6f2503853fea6d1d7fc", 'hex');
         var tx = new Tx(rawTransaction);
         tx.sign(privKey);
         var serializedTx = tx.serialize();
@@ -763,7 +764,7 @@ class Main extends Component {
 
     render() {
 
-        const { web3 } = this.props;
+        const {web3} = this.props;
 
         web3.eth.getAccounts(console.log);
 
@@ -776,13 +777,16 @@ class Main extends Component {
                             <p className="title">HERMÈS VINTAGE 'Kelly' Handtasche</p>
                             <Timeline>
                                 {
-                                    this.state.data.map((obj)=>{
+                                    this.state.data.map((obj) => {
                                         return (
                                             <Timeline.Item>
-                                                <p><span class="bold">created</span> <span >{obj.created}</span></p>
-                                                <p><span class="bold">from</span> <span class="names">{obj.fromName}</span> <span class="hash">{obj.from}</span></p>
-                                                <p><span class="bold">to</span> <span class="names">{obj.toName}</span> <span class="hash">{obj.to}</span></p>
-                                                <p><span class="bold">hash</span> <span >{obj.hash}</span></p>
+                                                <p><span class="bold">created</span> <span>{obj.created}</span></p>
+                                                <p><span class="bold">from</span> <span
+                                                    class="names">{obj.fromName}</span> <span
+                                                    class="hash">{obj.from}</span></p>
+                                                <p><span class="bold">to</span> <span class="names">{obj.toName}</span>
+                                                    <span class="hash">{obj.to}</span></p>
+                                                <p><span class="bold">hash</span> <span>{obj.hash}</span></p>
                                             </Timeline.Item>
                                         )
                                     })
@@ -790,11 +794,12 @@ class Main extends Component {
                             </Timeline>
                         </Col>
                         <Col span={8}>
-                            <img src={require('../assets/bag.jpg')} width="200px" />
+                            <img src={require('../assets/bag.jpg')} width="200px"/>
                         </Col>
                     </Row>
                 </div>
-                <button onClick={() => this.sendEther(0.01, '0xb9f31c423473a1ba4ba1d326a439902a4f8b02f7')}>SEND ETHER</button>
+                <button onClick={() => this.sendEther(0.01, '0xb9f31c423473a1ba4ba1d326a439902a4f8b02f7')}>SEND ETHER
+                </button>
                 <button onClick={() => this.sendToken()}>SEND TOKEN</button>
             </div>
         );

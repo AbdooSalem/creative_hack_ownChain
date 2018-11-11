@@ -1234,6 +1234,10 @@ async-validator@~1.8.5:
   dependencies:
     babel-runtime "6.x"
 
+async-waterfall@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/async-waterfall/-/async-waterfall-0.1.5.tgz#398bd48b0eac5d40ffbe400fe9e37a53ba966dae"
+
 async@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"

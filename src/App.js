@@ -3,10 +3,15 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 
 import './App.css';
 import Main from "./containers/Main";
+import { withWeb3 } from 'react-web3-provider';
+
 const { Header, Content, Footer } = Layout;
 
 class App extends Component {
-  render() {
+
+render() {
+    const { web3 } = this.props;
+
     return (
         <Layout className="layout">
             <Header>
@@ -31,7 +36,10 @@ class App extends Component {
                 </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
-                Own Chain ©2018 Created @ HACKATHON 2018
+                <p>Own Chain ©2018 Created @ HACKATHON 2018</p>
+                <p>Using Web3 version: {web3.version}</p>
+                <p>{web3.accounts}</p>
+
             </Footer>
         </Layout>
 
@@ -39,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withWeb3(App);

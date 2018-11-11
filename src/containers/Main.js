@@ -726,9 +726,8 @@ class Main extends Component {
             "chainId": "0x01"
         };
 
-        // Example private key (do not use): 'e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109'
         // The private key must be for myAddress
-        var privKey = new Buffer("a62eb2570c4feaa0062b0d134eef025c04fb61b62617ac084e3ebb96f4de8e71", 'hex');
+        var privKey = new Buffer("e331b6d69882b4cb4ea581d88e0b604039a3de5967688d3dcffdd2270c0fd109", 'hex');
         var tx = new Tx(rawTransaction);
         tx.sign(privKey);
         var serializedTx = tx.serialize();
